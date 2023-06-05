@@ -12,8 +12,10 @@
         android:theme="@style/Theme.PROWLERGMF"
         tools:targetApi="31" >
         <activity
-            android:name=".Ventas"
-            android:exported="false" />
+            android:name=".menuf"
+            android:exported="false"
+            android:label="@string/title_activity_menuf"
+            android:theme="@style/Theme.PROWLERGMF.NoActionBar" />
         <activity
             android:name=".Saludo"
             android:exported="false" />
