@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="campodetextoblanco" parent="Theme.AppCompat.Light"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+        <item name="colorControlNormal">#A9BABA</item>
+        <item name="colorControlActivated">#3F51B5</item>
+    </style>
+</resources>

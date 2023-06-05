@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo7"
+    tools:context=".Crearcuenta">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/typoroundbolddemo"
+        android:text="CREAR CUENTA"
+        android:textColor="#F1F8F9"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="62dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="546dp"
+        android:gravity="top"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.2">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/eddbackground"
+            android:drawableLeft="@drawable/baseline_directions_run_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:hint="Usuario"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#F1F8F9"
+            android:textColorHint="#CDCDCD"
+            android:textSize="20sp"
+            android:theme="@style/campodetextoblanco" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtepasword"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:background="@drawable/eddbackground"
+                android:drawableLeft="@drawable/baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:fontFamily="@font/typoroundbolddemo"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textColor="#F1F8F9"
+                android:textColorHint="#CDCDCD"
+                android:textSize="20sp"
+                android:theme="@style/campodetextoblanco" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/txtepasword2"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:background="@drawable/eddbackground"
+                android:drawableLeft="@drawable/baseline_lock_reset_24"
+                android:drawablePadding="10dp"
+                android:ems="10"
+                android:fontFamily="@font/typoroundbolddemo"
+                android:hint="Confirm"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:textColor="#F1F8F9"
+                android:textColorHint="#CDCDCD"
+                android:textSize="20sp"
+                android:theme="@style/campodetextoblanco" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/eddbackground"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:hint="Nombre"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#F1F8F9"
+            android:textColorHint="#CDCDCD"
+            android:textSize="20sp"
+            android:theme="@style/campodetextoblanco" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/eddbackground"
+            android:drawableLeft="@drawable/baseline_store_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:hint="Nombre del negocio"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="#F1F8F9"
+            android:textColorHint="#CDCDCD"
+            android:textSize="20sp"
+            android:theme="@style/campodetextoblanco" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName5"
+            android:layout_width="242dp"
+            android:layout_height="50dp"
+            android:background="@drawable/eddbackground"
+            android:drawableLeft="@drawable/baseline_local_phone_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:hint="Telefono"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:textColor="#F1F8F9"
+            android:textColorHint="#CDCDCD"
+            android:textSize="20sp"
+            android:theme="@style/campodetextoblanco" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName6"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/eddbackground"
+            android:drawableLeft="@drawable/baseline_not_listed_location_24"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:hint="Dirección"
+            android:inputType="textMultiLine"
+            android:paddingLeft="10dp"
+            android:textColor="#F1F8F9"
+            android:textColorHint="#CDCDCD"
+            android:textSize="20sp"
+            android:theme="@style/campodetextoblanco" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/typoroundbolddemo"
+            android:text="¿Que es tu negocio?"
+            android:textColor="#F1F8F9"
+            android:textColorHighlight="#8BBCCD"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="#7CABB9"
+                android:fontFamily="@font/typoroundbolddemo"
+                android:text="Minorista"
+                android:textColor="#F1F8F9"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="#7CABB9"
+                android:fontFamily="@font/typoroundbolddemo"
+                android:text="Proveedor"
+                android:textColor="#F1F8F9"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
