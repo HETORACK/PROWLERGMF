@@ -32,7 +32,7 @@
         android:id="@+id/txtepasword3"
         android:layout_width="355dp"
         android:layout_height="60dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="84dp"
         android:background="@drawable/eddbackground2"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="10dp"
