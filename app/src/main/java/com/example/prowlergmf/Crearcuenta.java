@@ -1,18 +1,31 @@
 package com.example.prowlergmf;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.CheckBox;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Crearcuenta extends AppCompatActivity {
 
@@ -22,12 +35,17 @@ public class Crearcuenta extends AppCompatActivity {
     Spinner spnclamin;
     CheckBox cbxpape, cbxaba, cbxout,cbxcal, cbxali, cbxtlapa,cbxespe;
     LinearLayout llvprove,llvmino;
-    int tipo,tipoentre,t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,seleccion,espe;
+    int tipo=0,tipoentre,t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,seleccion,espe;
     String tipominu;
+    RequestQueue requestQueue;
+    private static final String URL1 = "http://201.102.30.200/android/cliente.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crearcuenta);
+
+        requestQueue = Volley.newRequestQueue(this);
+
         txteusu=findViewById(R.id.txteusu);
         txtepasword=findViewById(R.id.txtepasword);
         txteconfpas=findViewById(R.id.txteconfpas);
@@ -78,11 +96,57 @@ public class Crearcuenta extends AppCompatActivity {
             txteprocue.requestFocus();
 
         } else {
-            if (txteprocue.getText().toString().trim().length() != 0 || cbxespe.isChecked()==false){
-                Intent registrar = new Intent(view.getContext(), iniciarseg.class);
-                startActivity(registrar);
+            if (validar()==true){
+                String nom = txtenom.getText().toString();
+                String usu = txteusu.getText().toString();
+                String cont = txtepasword.getText().toString();
+                String ubi = txtedirec.getText().toString();
+                String tel = txtetel.getText().toString();
+                crearCli(nom,usu,cont,ubi,tel);
+
             }
-        }
+            }
+
+    }
+
+    private void crearCli(final String nom, final String usu, final String cont, final String ubi, final String tel) {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                URL1,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Crearcuenta.this,"¡NUEVO USER!", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("usu",usu);
+                params.put("nom",nom);
+                params.put("cont",cont);
+                params.put("ubi",ubi);
+                params.put("tel",tel);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public boolean validar() {
+        boolean retorno=true;
+        if (txteusu.getText().toString().trim().length() == 0 || txtepasword.getText().toString().trim().length() == 0 || txteconfpas.getText().toString().trim().length() == 0 || txtenom.getText().toString().trim().length() == 0 || txteneg.getText().toString().trim().length() == 0 || txtetel.getText().toString().trim().length() == 0 || txtedirec.getText().toString().trim().length() == 0) {
+            Toast.makeText(Crearcuenta.this, "No deje campos vacíos", Toast.LENGTH_LONG).show();
+            retorno=false;
+        }return retorno;
     }
     public int visibilidad(){
                 rdbgtipo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -127,6 +191,8 @@ public class Crearcuenta extends AppCompatActivity {
             t7=1;
         }
     }
+
+
     public String Spiner(){
         spnclamin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
