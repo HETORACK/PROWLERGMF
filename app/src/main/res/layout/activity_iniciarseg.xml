@@ -34,7 +34,7 @@
         app:srcCompat="@drawable/eyr" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/txteresppreg"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginBottom="100dp"
@@ -140,7 +140,7 @@
         app:layout_constraintGuide_begin="59dp" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/txttexto"
         android:layout_width="362dp"
         android:layout_height="99dp"
         android:layout_marginTop="228dp"
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgvsonido"
 
         android:layout_width="276dp"
         android:layout_height="286dp"
@@ -162,16 +162,44 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ondas" />
 
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:fontFamily="@font/typoroundbolddemo"
+        android:text="Idea para primer negocio:"
+        android:textAlignment="center"
+        android:textColor="#F1F8F9"
+        android:textColorHighlight="#8BBCCD"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/txteresppreg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgbgraba"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="84dp"
         android:contentDescription="micro"
+        android:onClick="Hablar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/txttexto"
         app:srcCompat="@drawable/micro" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="56dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/eddbackground"
+        android:contentDescription="Limpiar"
+        android:onClick="limpiar"
+        app:layout_constraintBottom_toTopOf="@+id/textView24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_refresh_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

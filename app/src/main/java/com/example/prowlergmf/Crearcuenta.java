@@ -13,7 +13,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -36,9 +35,12 @@ public class Crearcuenta extends AppCompatActivity {
     CheckBox cbxpape, cbxaba, cbxout,cbxcal, cbxali, cbxtlapa,cbxespe;
     LinearLayout llvprove,llvmino;
     int tipo=0,tipoentre,t1=0,t2=0,t3=0,t4=0,t5=0,t6=0,t7=0,seleccion,espe;
-    String tipominu;
+    String tipominu,seleccionado;
     RequestQueue requestQueue;
-    private static final String URL1 = "http://201.102.30.200/android/cliente.php";
+
+    private static final String URL1="http://192.168.100.74/android/cliente.php";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,31 +104,57 @@ public class Crearcuenta extends AppCompatActivity {
                 String cont = txtepasword.getText().toString();
                 String ubi = txtedirec.getText().toString();
                 String tel = txtetel.getText().toString();
-                crearCli(nom,usu,cont,ubi,tel);
-
+                crearCli(usu,nom,cont,ubi,tel);
+                clear();
+                Intent seguridad = new Intent(view.getContext(), iniciarseg.class);
+                startActivity(seguridad);
             }
             }
 
     }
 
-    private void crearCli(final String nom, final String usu, final String cont, final String ubi, final String tel) {
-        StringRequest stringRequest = new StringRequest(
-                Request.Method.POST,
-                URL1,
+    private void clear() {
+        txteusu.setText("");
+        txtepasword.setText("");
+        txteconfpas.setText("");
+        txtenom.setText("");
+        txteneg.setText("");
+        txtetel.setText("");
+        txtedirec.setText("");
+        rdbgtipo.clearCheck();
+        spnclamin.setSelection(0);
+        txteaquien.setText("");
+        txteprocue.setText("");
+        txteproque.setText("");
+        cbxespe.setSelected(false);
+        cbxpape.setSelected(false);
+        cbxcal.setSelected(false);
+        cbxali.setSelected(false);
+        cbxaba.setSelected(false);
+        cbxout.setSelected(false);
+        cbxtlapa.setSelected(false);
+
+    }
+
+    private void crearCli( final String usu, final String nom, final String cont, final String ubi, final String tel) {
+
+        StringRequest request = new StringRequest(Request.Method.POST, URL1,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(Crearcuenta.this,"¡NUEVO USER!", Toast.LENGTH_SHORT).show();
-                    }
+
+                        Toast.makeText(Crearcuenta.this,"¡NUEVO USER!", Toast.LENGTH_SHORT).show();}
+
+
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(Crearcuenta.this,"¡Puede que no tengas internet!", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
-            @Nullable
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -138,7 +166,7 @@ public class Crearcuenta extends AppCompatActivity {
                 return params;
             }
         };
-        requestQueue.add(stringRequest);
+        requestQueue.add(request);
     }
 
     public boolean validar() {
@@ -146,7 +174,47 @@ public class Crearcuenta extends AppCompatActivity {
         if (txteusu.getText().toString().trim().length() == 0 || txtepasword.getText().toString().trim().length() == 0 || txteconfpas.getText().toString().trim().length() == 0 || txtenom.getText().toString().trim().length() == 0 || txteneg.getText().toString().trim().length() == 0 || txtetel.getText().toString().trim().length() == 0 || txtedirec.getText().toString().trim().length() == 0) {
             Toast.makeText(Crearcuenta.this, "No deje campos vacíos", Toast.LENGTH_LONG).show();
             retorno=false;
-        }return retorno;
+        }else {
+            if (txtepasword.getText().toString().trim().equals(txteconfpas.getText().toString().trim())) {
+
+                if (rdbmino.isChecked() == false && rdbprove.isChecked() == false) {
+                    Toast.makeText(Crearcuenta.this, "Debes seleccionar algún tipo de negocio", Toast.LENGTH_LONG).show();
+                    retorno = false;
+                } else {
+                    switch (visibilidad()) {
+                        case 1:
+                            if (txteaquien.getText().toString().trim().length() == 0) {
+                                Toast.makeText(Crearcuenta.this, "Debes indicar quienes son tus compradores", Toast.LENGTH_LONG).show();
+                                retorno = false;
+                            } else {
+                                if (seleccion==0) {
+                                    retorno = false;
+                                } else {
+                                    retorno = true;
+                                }
+                            }
+                            break;
+                        case 2:
+                            if (txteproque.getText().toString().trim().length() == 0) {
+                                Toast.makeText(Crearcuenta.this, "Debes indicar que vendes", Toast.LENGTH_LONG).show();
+                                retorno = false;
+                            } else {
+                                if (t1 == 0 && t2 == 0 && t3 == 0 && t4 == 0 && t5 == 0 && t6 == 0 && t7 == 0) {
+                                    abastece();
+                                    Toast.makeText(Crearcuenta.this, "Debes sleccionar al menos uno", Toast.LENGTH_LONG).show();
+                                    retorno = false;
+                                }
+                            }
+                            break;
+                    }
+
+                }
+            } else {
+                Toast.makeText(Crearcuenta.this, "Tu contraseña no fue validada", Toast.LENGTH_LONG).show();
+                retorno=false;
+            }
+        }
+            return retorno;
     }
     public int visibilidad(){
                 rdbgtipo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
